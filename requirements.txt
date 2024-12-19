@@ -1,0 +1,7 @@
+Flask
+Flask-Cors
+pandas
+matplotlib
+scikit-learn
+xgboost
+
