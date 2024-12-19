@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Avocado Price Prediction</title>
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+		/>
+	</head>
+	<body>
+		<nav class="navbar navbar-expand-lg bg-body-tertiary">
+			<div class="container-fluid">
+				<a class="navbar-brand" href="#">Avocado</a>
+				<button
+					class="navbar-toggler"
+					type="button"
+					data-bs-toggle="collapse"
+					data-bs-target="#navbarNav"
+					aria-controls="navbarNav"
+					aria-expanded="false"
+					aria-label="Toggle navigation"
+				>
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarNav">
+					<ul class="navbar-nav">
+						<li class="nav-item">
+							<a class="nav-link active" aria-current="page" href="#">Home</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="http://127.0.0.1:5000/api/dataset"
+								>Dataset</a
+							>
+						</li>
+						<li class="nav-item">
+							<a
+								class="nav-link"
+								aria-disabled="true"
+								href="http://127.0.0.1:5000/api/visualization"
+								>Visualization</a
+							>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		<div class="container">
+			<h1 class="my-5 text-center bg-dark text-light rounded-2">
+				Avocado Price Prediction
+			</h1>
+			<form method="POST" class="mt-4 col-12 gap-3 d-flex flex-wrap">
+				<!-- Numerical Inputs -->
+				{% for col in numerical_cols %}
+				<div class="mb-3 col-5">
+					<label for="{{ col }}" class="form-label">{{ col }}:</label>
+					<input
+						type="number"
+						class="form-control"
+						name="{{ col }}"
+						id="{{ col }}"
+						required
+					/>
+				</div>
+				{% endfor %}
+
+				<!-- Categorical Inputs -->
+				{% for col in categorical_cols %}
+				<div class="mb-3 col-5">
+					<label for="{{ col }}" class="form-label">{{ col }}:</label>
+					<input
+						type="text"
+						class="form-control"
+						name="{{ col }}"
+						id="{{ col }}"
+						required
+					/>
+				</div>
+				{% endfor %}
+
+				<button type="submit" class="btn btn-primary col-5">Predict</button>
+			</form>
+
+			{% if prediction is not none %}
+			<h2 class="mt-5 text-center mt-3">Prediction: ${{ prediction }}</h2>
+			{% endif %}
+		</div>
+
+		<!-- Lien vers le fichier JavaScript de Bootstrap (en bas du fichier pour un meilleur chargement) -->
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+	</body>
+</html>
